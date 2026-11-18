@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Asili Finds</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #F7F4EC;
+            color: #29332B;
+        }
+
+        .register-box {
+            width: 100%;
+            max-width: 460px;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(38, 61, 43, 0.12);
+        }
+
+        .logo {
+            text-align: center;
+            color: #263D2B;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5d9d4;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #263D2B;
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            background: #263D2B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background: #35553c;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: #a12626;
+        }
+
+        .login-link,
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #263D2B;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link a {
+            color: #666;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-box">
+
+        <div class="logo">Asili Finds</div>
+        <p class="subtitle">Create your account and start shopping.</p>
+
+        <h2>Create Account</h2>
+
+        <p id="message" class="message" role="status"></p>
+
+        <form id="registerForm">
+
+            <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="e.g. 0712345678"
+                    autocomplete="tel"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="At least 8 characters"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Enter password again"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="register-button">
+                Create My Account
+            </button>
+
+        </form>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+        <p class="back-link">
+            <a href="index.html">← Back to shopping</a>
+        </p>
+
+    </div>
+
+    <
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const fullname = document.getElementById("fullname").value.trim();
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const message = document.getElementById("message");
+
+    message.style.color = "#a12626";
+
+    if (password !== confirmPassword) {
+        message.textContent = "Your passwords do not match.";
+        return;
+    }
+
+    if (password.length < 8) {
+        message.textContent = "Your password must have at least 8 characters.";
+        return;
+    }
+
+    let users = [];
+
+    try {
+        users = JSON.parse(localStorage.getItem("asiliFindsUsers") || "[]");
+
+        if (!Array.isArray(users)) {
+            users = [];
+        }
+    } catch (error) {
+        message.textContent = "Unable to access account storage.";
+        return;
+    }
+
+    const existingUser = users.find(user => user.email === email);
+
+    if (existingUser) {
+        message.textContent = "This email already has an account. Please log in.";
+        return;
+    }
+
+    const newUser = {
+        fullname: fullname,
+        email: email,
+        phone: phone,
+        password: password
+    };
+
+    users.push(newUser);
+
+    try {
+        localStorage.setItem("asiliFindsUsers", JSON.stringify(users));
+
+        message.style.color = "#263D2B";
+        message.textContent = "Account created successfully! Redirecting to login...";
+
+        document.getElementById("registerForm").reset();
+
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1500);
+
+    } catch (error) {
+        message.style.color = "#a12626";
+        message.textContent = "Account could not be saved. Please try again.";
+    }
+});
+</script>
+
+
+</body>
+</html>

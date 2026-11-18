@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Asili Finds</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f7f7f4;
+            color: #252525;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-page {
+            width: min(1200px, 94%);
+            margin: 35px auto 60px;
+        }
+
+        .cart-heading {
+            margin-bottom: 28px;
+        }
+
+        .cart-heading h1 {
+            margin: 0 0 8px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .cart-heading p {
+            margin: 0;
+            color: #777;
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 340px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .cart-items,
+        .order-summary {
+            background: #fff;
+            border: 1px solid #e9e9e3;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .cart-items h2,
+        .order-summary h2 {
+            margin: 0 0 20px;
+            font-size: 21px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 115px minmax(0, 1fr) auto;
+            gap: 17px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:first-of-type {
+            padding-top: 0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: 0;
+        }
+
+        .cart-image {
+            width: 115px;
+            height: 115px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #f5f5f1;
+        }
+
+        .cart-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-product-title {
+            margin: 0 0 7px;
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        .cart-product-category {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: #65734b;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .cart-product-description {
+            margin: 0 0 9px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .cart-product-review {
+            margin-bottom: 10px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .review-stars {
+            color: #e5a51a;
+            letter-spacing: 1px;
+        }
+
+        .cart-unit-price {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-top: 13px;
+        }
+
+        .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            padding: 5px 9px;
+        }
+
+        .quantity-control button {
+            width: 22px;
+            height: 22px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .remove-button {
+            border: 0;
+            background: transparent;
+            color: #b33b32;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .cart-line-total {
+            text-align: right;
+            white-space: nowrap;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .empty-cart {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .empty-cart i {
+            color: #89946d;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .empty-cart h3 {
+            margin: 0 0 10px;
+        }
+
+        .empty-cart p {
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .shop-button,
+        .checkout-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+            padding: 14px 18px;
+            border: 0;
+            border-radius: 8px;
+            background: #34452d;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .shop-button:hover,
+        .checkout-button:hover {
+            background: #4d6242;
+        }
+
+        .empty-cart .shop-button {
+            width: auto;
+            margin-top: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 17px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .summary-row strong {
+            color: #252525;
+        }
+
+        .summary-total {
+            padding-top: 18px;
+            border-top: 1px solid #e9e9e3;
+            color: #222;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .delivery-note {
+            margin: 18px 0;
+            padding: 13px;
+            border-radius: 8px;
+            background: #f5f7f0;
+            color: #59664d;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 18px;
+            color: #34452d;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .continue-shopping:hover {
+            text-decoration: underline;
+        }
+
+        .secure-note {
+            margin-top: 15px;
+            color: #777;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .cart-page {
+                width: 92%;
+                margin-top: 23px;
+            }
+
+            .cart-items,
+            .order-summary {
+                padding: 16px;
+            }
+
+            .cart-item {
+                grid-template-columns: 85px minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .cart-image {
+                width: 85px;
+                height: 95px;
+            }
+
+            .cart-line-total {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .cart-product-title {
+                font-size: 15px;
+            }
+
+            .cart-product-description {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Keep this header consistent with your homepage -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Asili Finds</a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#products">Shop</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="index.html" aria-label="Continue shopping">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+
+                <a href="cart.html" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <section class="cart-heading">
+            <h1>Your Shopping Cart</h1>
+            <p>Review your selected items before checking out.</p>
+        </section>
+
+        <div class="cart-layout">
+            <section class="cart-items">
+                <h2>Your Items (<span id="itemCount">0</span>)</h2>
+
+                <div id="cartItems">
+                    <!-- Items are added here by JavaScript -->
+                </div>
+
+                <a href="index.html" class="continue-shopping">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Continue shopping
+                </a>
+            </section>
+
+            <aside class="order-summary">
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <strong id="cartSubtotal">KSh 0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <strong id="deliveryFee">Calculated at checkout</strong>
+                </div>
+
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <strong id="cartTotal">KSh 0</strong>
+                </div>
+
+                <div class="delivery-note">
+                    <i class="fa-solid fa-truck"></i>
+                    Delivery charges will be confirmed during checkout.
+                </div>
+
+                <button type="button" id="checkoutButton"
+                        class="checkout-button">
+                    Proceed to Checkout
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <p class="secure-note">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Review your order before payment.
+                </p>
+            </aside>
+        </div>
+    </main>
+
+    <script>
+        const CART_KEY = "cart";
+
+        const cartItemsContainer = document.getElementById("cartItems");
+        const itemCountElement = document.getElementById("itemCount");
+        const cartCountElement = document.getElementById("cartCount");
+        const subtotalElement = document.getElementById("cartSubtotal");
+        const totalElement = document.getElementById("cartTotal");
+        const checkoutButton = document.getElementById("checkoutButton");
+
+        function getCart() {
+            try {
+                const cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+                return Array.isArray(cart) ? cart : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+
+        function money(amount) {
+            return "KSh " + Number(amount || 0).toLocaleString("en-KE", {
+                maximumFractionDigits: 2
+            });
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            })[character]);
+        }
+
+        // Used only when the product does not have an image saved in the cart.
+        function productImage(name) {
+            const product = String(name || "").toLowerCase();
+
+            if (product.includes("headphone") || product.includes("earbud")) {
+                return "https://placehold.co/300x300?text=Headphones";
+            }
+
+            if (product.includes("chair") || product.includes("sofa")) {
+                return "https://placehold.co/300x300?text=Furniture";
+            }
+
+            if (product.includes("kettle") || product.includes("blender")) {
+                return "https://placehold.co/300x300?text=Kitchen";
+            }
+
+            if (product.includes("phone") || product.includes("laptop")) {
+                return "https://placehold.co/300x300?text=Electronics";
+            }
+
+            return "https://placehold.co/300x300?text=Asili+Finds";
+        }
+
+        function makeStars(rating) {
+            const value = Math.max(0, Math.min(5, Number(rating) || 0));
+            const fullStars = Math.floor(value);
+            const halfStar = value - fullStars >= 0.5 ? 1 : 0;
+            const emptyStars = 5 - fullStars - halfStar;
+
+            return "★".repeat(fullStars)
+                + (halfStar ? "⯪" : "")
+                + "☆".repeat(emptyStars);
+        }
+
+        function updateHeaderCount(cart) {
+            const quantity = cart.reduce(
+                (total, item) => total + Math.max(0, Number(item.quantity) || 1),
+                0
+            );
+
+            cartCountElement.textContent = quantity;
+        }
+
+        function renderCart() {
+            const cart = getCart();
+            cartItemsContainer.replaceChildren();
+
+            const totalQuantity = cart.reduce(
+                (sum, item) => sum + Math.max(0, Number(item.quantity) || 1),
+                0
+            );
+
+            const subtotal = cart.reduce(
+                (sum, item) =>
+                    sum + (Number(item.price) || 0)
+                    * Math.max(0, Number(item.quantity) || 1),
+                0
+            );
+
+            itemCountElement.textContent = totalQuantity;
+            updateHeaderCount(cart);
+            subtotalElement.textContent = money(subtotal);
+            totalElement.textContent = money(subtotal);
+
+            if (cart.length === 0) {
+                const empty = document.createElement("div");
+                empty.className = "empty-cart";
+                empty.innerHTML = `
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>You haven't added any products yet.<br>
+                    Explore Asili Finds and find something you love.</p>
+                    <a href="index.html" class="shop-button">
+                        <i class="fa-solid fa-store"></i> Start Shopping
+                    </a>
+                `;
+
+                cartItemsContainer.appendChild(empty);
+                checkoutButton.disabled = true;
+                checkoutButton.style.opacity = "0.55";
+                checkoutButton.style.cursor = "not-allowed";
+                return;
+            }
+
+            checkoutButton.disabled = false;
+            checkoutButton.style.opacity = "1";
+            checkoutButton.style.cursor = "pointer";
+
+            cart.forEach((item, index) => {
+                const quantity = Math.max(1, Number(item.quantity) || 1);
+                const price = Math.max(0, Number(item.price) || 0);
+                const rating = Number(item.rating) || 0;
+                const reviewCount = Number(item.reviewCount) || 0;
+                const lineTotal = price * quantity;
+
+                const card = document.createElement("article");
+                card.className = "cart-item";
+
+                const imageWrap = document.createElement("div");
+                imageWrap.className = "cart-image";
+
+                const image = document.createElement("img");
+                image.src = item.image || productImage(item.name);
+                image.alt = item.name || "Product";
+                image.loading = "lazy";
+                image.onerror = function () {
+                    this.onerror = null;
+                    this.src = "https://placehold.co/300x300?text=Product";
+                };
+                imageWrap.appendChild(image);
+
+                const details = document.createElement("div");
+
+                const title = document.createElement("h3");
+                title.className = "cart-product-title";
+                title.textContent = item.name || "Product";
+
+                const category = document.createElement("span");
+                category.className = "cart-product-category";
+                category.textContent = item.category || "Household product";
+
+                const description = document.createElement("p");
+                description.className = "cart-product-description";
+                description.textContent = item.description
+                    || "A selected product from Asili Finds.";
+
+                const review = document.createElement("div");
+                review.className = "cart-product-review";
+
+                if (rating > 0) {
+                    const stars = document.createElement("span");
+                    stars.className = "review-stars";
+                    stars.textContent = makeStars(rating);
+
+                    review.appendChild(stars);
+                    review.appendChild(document.createTextNode(
+                        ` ${rating.toFixed(1)} (${reviewCount} reviews)`
+                    ));
+                } else {
+                    review.textContent = "Customer ratings not available";
+                }
+
+                const unitPrice = document.createElement("div");
+                unitPrice.className = "cart-unit-price";
+                unitPrice.textContent = money(price) + " each";
+
+                const actions = document.createElement("div");
+                actions.className = "cart-item-actions";
+
+                const quantityControl = document.createElement("div");
+                quantityControl.className = "quantity-control";
+
+                const decrease = document.createElement("button");
+                decrease.type = "button";
+                decrease.textContent = "−";
+                decrease.setAttribute("aria-label", "Decrease quantity");
+
+                const quantityText = document.createElement("span");
+                quantityText.textContent = quantity;
+
+                const increase = document.createElement("button");
+                increase.type = "button";
+                increase.textContent = "+";
+                increase.setAttribute("aria-label", "Increase quantity");
+
+                decrease.addEventListener("click", () => {
+                    changeQuantity(index, -1);
+                });
+
+                increase.addEventListener("click", () => {
+                    changeQuantity(index, 1);
+                });
+
+                quantityControl.append(decrease, quantityText, increase);
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.className = "remove-button";
+                remove.innerHTML = '<i class="fa-regular fa-trash-can"></i> Remove';
+                remove.addEventListener("click", () => removeItem(index));
+
+                actions.append(quantityControl, remove);
+                details.append(title, category, description, review, unitPrice, actions);
+
+                const lineTotalElement = document.createElement("div");
+                lineTotalElement.className = "cart-line-total";
+                lineTotalElement.textContent = money(lineTotal);
+
+                card.append(imageWrap, details, lineTotalElement);
+                cartItemsContainer.appendChild(card);
+            });
+        }
+
+        function changeQuantity(index, amount) {
+            const cart = getCart();
+
+            if (!cart[index]) return;
+
+            const currentQuantity = Math.max(1, Number(cart[index].quantity) || 1);
+            const newQuantity = currentQuantity + amount;
+
+            if (newQuantity < 1) {
+                removeItem(index);
+                return;
+            }
+
+            cart[index].quantity = newQuantity;
+            saveCart(cart);
+            renderCart();
+        }
+
+        function removeItem(index) {
+            const cart = getCart();
+            cart.splice(index, 1);
+            saveCart(cart);
+            renderCart();
+        }
+
+        checkoutButton.addEventListener("click", () => {
+            const cart = getCart();
+
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add products first.");
+                return;
+            }
+
+            window.location.href = "checkout.html";
+        });
+
+        renderCart();
+    </script>
+
+</body>
+</html>

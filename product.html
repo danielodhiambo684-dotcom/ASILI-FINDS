@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | Asili Finds</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root {
+      --green: #263d2b;
+      --cream: #f7f4ec;
+      --gold: #c49a52;
+      --text: #29332b;
+      --muted: #747b73;
+      --border: #e8e4d9;
+    }
+
+    body { background: var(--cream); color: var(--text); }
+    .pd-container { max-width: 1150px; margin: 35px auto; padding: 0 20px; }
+    .pd-back { color: var(--green); text-decoration: none; display: inline-block; margin-bottom: 22px; }
+    .pd-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; }
+    .pd-gallery, .pd-details, .pd-panel {
+      background: white; border: 1px solid var(--border);
+      border-radius: 18px; padding: 22px;
+    }
+    .pd-main-media {
+      position: relative; background: #f7f7f3; border-radius: 12px;
+      overflow: hidden; min-height: 350px; display: grid; place-items: center;
+    }
+    .pd-main-media img, .pd-main-media video {
+      width: 100%; height: 380px; object-fit: contain; display: block;
+    }
+    .pd-main-media img { cursor: zoom-in; }
+    .pd-thumbnails { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .pd-thumb {
+      width: 78px; height: 70px; border: 2px solid var(--border);
+      background: white; border-radius: 9px; overflow: hidden; cursor: pointer;
+      position: relative; padding: 0;
+    }
+    .pd-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .pd-thumb.active { border-color: var(--green); }
+    .pd-video-thumb { display: grid; place-items: center; color: var(--green); font-size: 24px; }
+    .pd-video-thumb span { font-size: 11px; }
+    .pd-category { color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: 1.2px; }
+    .pd-details h1 { font-size: clamp(26px, 3vw, 36px); margin: 10px 0; }
+    .pd-price { font-size: 29px; font-weight: 800; color: var(--green); margin: 18px 0; }
+    .pd-description { color: var(--muted); line-height: 1.8; }
+    .pd-stock { color: #39734b; font-size: 14px; margin: 14px 0; }
+    .pd-quality { border-top: 1px solid var(--border); padding-top: 17px; margin-top: 18px; }
+    .pd-quality h3, .pd-panel h2 { margin-top: 0; }
+    .pd-quality ul { padding-left: 20px; line-height: 2; color: var(--muted); }
+    .pd-buy { display: flex; gap: 10px; margin-top: 22px; }
+    .pd-qty { width: 75px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
+    .pd-button {
+      flex: 1; border: 0; border-radius: 8px; padding: 13px;
+      background: var(--green); color: white; cursor: pointer; font-weight: 700;
+    }
+    .pd-button:hover { background: #38553d; }
+    .pd-panel { margin-top: 25px; }
+    .pd-panel p { color: var(--muted); line-height: 1.7; }
+    .pd-alternatives { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .pd-alt { border: 1px solid var(--border); padding: 12px; border-radius: 12px; color: var(--text); text-decoration: none; }
+    .pd-alt img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+    .pd-alt strong, .pd-alt span { display: block; margin-top: 9px; }
+    .pd-alt span { color: var(--green); font-weight: 700; }
+    .pd-note { font-size: 13px; color: var(--muted); }
+    .pd-zoom {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.92); align-items: center; justify-content: center; padding: 25px;
+    }
+    .pd-zoom.open { display: flex; }
+    .pd-zoom img { max-width: 95vw; max-height: 90vh; object-fit: contain; cursor: zoom-out; }
+    .pd-zoom button { position: absolute; top: 20px; right: 25px; font-size: 30px; color: white; background: none; border: 0; cursor: pointer; }
+
+    @media (max-width: 750px) {
+      .pd-layout { grid-template-columns: 1fr; gap: 18px; }
+      .pd-main-media img, .pd-main-media video { height: 300px; }
+      .pd-alternatives { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header style="background:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;">
+  <a href="index.html" style="color:#263d2b;text-decoration:none;font-weight:800;font-size:21px;">
+    <i class="fa-solid fa-bag-shopping"></i> Asili Finds
+  </a>
+  <a href="cart.html" style="color:#263d2b;text-decoration:none;">
+    <i class="fa-solid fa-cart-shopping"></i> Cart
+  </a>
+</header>
+
+<main class="pd-container">
+  <a class="pd-back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Continue shopping</a>
+
+  <div class="pd-layout">
+    <section class="pd-gallery">
+      <div class="pd-main-media" id="mainMedia">
+        <img id="mainImage" src="" alt="Product image">
+      </div>
+      <div class="pd-thumbnails" id="thumbnails"></div>
+      <p class="pd-note">Select a thumbnail to view the image or play the product video. Click the main image to zoom in.</p>
+    </section>
+
+    <section class="pd-details">
+      <span class="pd-category" id="productCategory"></span>
+      <h1 id="productName">Product</h1>
+      <div class="pd-price" id="productPrice"></div>
+      <p class="pd-description" id="productDescription"></p>
+      <p class="pd-stock"><i class="fa-solid fa-circle-check"></i> Available for enquiry</p>
+
+      <div class="pd-quality">
+        <h3>Product quality and features</h3>
+        <ul id="qualityList"></ul>
+        <p class="pd-note">Confirm exact specifications, condition and warranty with the seller before purchase.</p>
+      </div>
+
+      <div class="pd-buy">
+        <input class="pd-qty" type="number" id="quantity" min="1" value="1" aria-label="Quantity">
+        <button class="pd-button" id="addButton">
+          <i class="fa-solid fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+      <p id="cartMessage" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="pd-panel">
+    <h2>About this product</h2>
+    <p id="productAbout"></p>
+  </section>
+
+  <section class="pd-panel">
+    <h2>Similar products and alternatives</h2>
+    <p>Compare these other finds before deciding which one suits you.</p>
+    <div class="pd-alternatives" id="alternatives"></div>
+  </section>
+</main>
+
+<div class="pd-zoom" id="zoomOverlay" role="dialog" aria-label="Zoomed product image">
+  <button id="closeZoom" aria-label="Close zoom">&times;</button>
+  <img id="zoomImage" src="" alt="Zoomed product">
+</div>
+
+<script src="script.js"></script>
+<script>
+(() => {
+  const products = {
+    "Wireless Headphones": {
+      price: 2999, category: "Electronics",
+      image: "images/headphone1.jpg",
+      description: "Wireless headphones for everyday listening, entertainment and music.",
+      about: "A headphone option for listening to music, videos and other audio. Check the actual model's connectivity, battery life and included accessories before ordering.",
+      quality: ["Check the ear cushions and headband finish.", "Confirm wireless connectivity and battery details.", "Ask about warranty and condition."],
+      video: "video/Hedphones 3d animation.mp4",
+      alternatives: ["Premium Headphones", "Wireless Earbuds", "Modern Smartwatch"]
+    },
+    "Modern Smartwatch": {
+      price: 4499, category: "Electronics",
+      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+      description: "A modern wristwatch-style product for everyday wear.",
+      about: "The pictured item is a watch-style product. Confirm whether the actual item is a smartwatch and check compatibility and features with the seller.",
+      quality: ["Confirm exact model and operating system compatibility.", "Ask about battery life and water resistance.", "Check strap, screen and warranty details."],
+      video: "videos/modern-smartwatch.mp4",
+      alternatives: ["Wireless Headphones", "Wireless Earbuds", "Premium Headphones"]
+    },
+    "Wireless Earbuds": {
+      price: 1899, category: "Electronics",
+      image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=900&q=85",
+      description: "Compact wireless earbuds for listening on the go.",
+      about: "A portable audio option. Confirm the model, charging case, battery performance and phone compatibility before purchasing.",
+      quality: ["Inspect the earbuds and charging case.", "Confirm battery and connection specifications.", "Ask whether replacement tips are included."],
+      video: "videos/wireless-earbuds.mp4",
+      alternatives: ["Wireless Headphones", "Premium Headphones", "Modern Smartwatch"]
+    },
+    "Kitchen Essentials Set": {
+      price: 950, category: "Kitchen",
+      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=85",
+      description: "Kitchen essentials for everyday food preparation and home use.",
+      about: "The exact items included in this set need to be confirmed with the seller. Ask for a photo of all included pieces before ordering.",
+      quality: ["Confirm the number of pieces included.", "Check material and cleaning instructions.", "Confirm food-contact suitability where applicable."],
+      video: "videos/kitchen-essentials.mp4",
+      alternatives: ["Coffee Essentials", "Modern Home Chair", "Classic T-Shirt"]
+    },
+    "Modern Home Chair": {
+      price: 4500, category: "Furniture",
+      image: "https://images.unsplash.com/photo-1598300053653-4b6f7e6c0b6e?auto=format&fit=crop&w=900&q=85",
+      description: "A modern chair option for home or workspace use.",
+      about: "Check the actual chair's dimensions, frame, upholstery and weight capacity before purchasing.",
+      quality: ["Confirm dimensions and weight capacity.", "Inspect the frame, joints and upholstery.", "Ask whether assembly is required."],
+      video: "videos/modern-home-chair.mp4",
+      alternatives: ["Kitchen Essentials Set", "Coffee Essentials", "Classic T-Shirt"]
+    },
+    "Refurbished Laptop": {
+      price: 18000, category: "Refurbished Goods",
+      image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85",
+      description: "A refurbished laptop option for study, work and everyday computing.",
+      about: "The image does not establish the laptop's specifications or condition. Confirm processor, RAM, storage, battery health, operating system and warranty before buying.",
+      quality: ["Request the exact make and model.", "Check battery health, screen, keyboard and ports.", "Confirm RAM, storage, charger and warranty."],
+      video: "videos/refurbished-laptop.mp4",
+      alternatives: ["Modern Smartwatch", "Wireless Headphones", "Premium Headphones"]
+    },
+    "Premium Headphones": {
+      price: 2999, category: "Electronics",
+      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
+      description: "Over-ear headphones for music, videos and everyday audio.",
+      about: "Check the exact product model and confirm its features before ordering.",
+      quality: ["Confirm wired or wireless connectivity.", "Check comfort, controls and included accessories.", "Ask about warranty and condition."],
+      video: "videos/premium-headphones.mp4",
+      alternatives: ["Wireless Headphones", "Wireless Earbuds", "Modern Smartwatch"]
+    },
+    "Classic T-Shirt": {
+      price: 799, category: "Fashion",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
+      description: "A classic T-shirt style for casual everyday wear.",
+      about: "Confirm the available sizes, colours, fabric composition and fit before ordering.",
+      quality: ["Check fabric composition and stitching.", "Confirm size chart and available colours.", "Review washing instructions."],
+      video: "videos/classic-tshirt.mp4",
+      alternatives: ["Kitchen Essentials Set", "Modern Home Chair", "Coffee Essentials"]
+    },
+    "Coffee Essentials": {
+      price: 3499, category: "Kitchen",
+      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85",
+      description: "Coffee-related essentials for your daily coffee routine.",
+      about: "The image is illustrative. Confirm exactly which coffee products or equipment are included in the item being sold.",
+      quality: ["Confirm the product contents and quantity.", "Check material and cleaning instructions.", "For electrical equipment, confirm voltage and warranty."],
+      video: "videos/coffee-essentials.mp4",
+      alternatives: ["Kitchen Essentials Set", "Modern Home Chair", "Classic T-Shirt"]
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedName = params.get("product");
+  const product = products[requestedName];
+
+  if (!product) {
+    document.querySelector(".pd-container").innerHTML =
+      '<h1>Product not found</h1><p>Please return to the homepage and select a product.</p><a href="index.html">Back to Asili Finds</a>';
+    return;
+  }
+
+  document.title = productNameText() + " | Asili Finds";
+
+  function productNameText() { return requestedName; }
+  function money(amount) { return "KSh " + amount.toLocaleString("en-KE"); }
+
+  document.getElementById("productName").textContent = requestedName;
+  document.getElementById("productCategory").textContent = product.category;
+  document.getElementById("productPrice").textContent = money(product.price);
+  document.getElementById("productDescription").textContent = product.description;
+  document.getElementById("productAbout").textContent = product.about;
+  document.getElementById("qualityList").innerHTML = product.quality
+    .map(item => "<li>" + item + "</li>").join("");
+
+  const mainMedia = document.getElementById("mainMedia");
+  const thumbs = document.getElementById("thumbnails");
+
+  function showImage() {
+    mainMedia.innerHTML = "";
+    const img = document.createElement("img");
+    img.id = "mainImage";
+    img.src = product.image;
+    img.alt = requestedName;
+    img.addEventListener("click", () => {
+      document.getElementById("zoomImage").src = product.image;
+      document.getElementById("zoomOverlay").classList.add("open");
+    });
+    mainMedia.appendChild(img);
+  }
+
+  function showVideo() {
+    mainMedia.innerHTML = "";
+    const video = document.createElement("video");
+    video.src = product.video;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.poster = product.image;
+    video.onerror = () => {
+      mainMedia.innerHTML = '<p style="padding:25px;text-align:center">Add your product video at <strong>' +
+        product.video + '</strong> to display it here.</p>';
+    };
+    mainMedia.appendChild(video);
+    video.play().catch(() => {});
+  }
+
+  function makeThumb(label, image, action, isVideo = false) {
+    const button = document.createElement("button");
+    button.className = "pd-thumb" + (isVideo ? " pd-video-thumb" : "");
+    button.type = "button";
+    button.title = label;
+    if (isVideo) {
+      button.innerHTML = '<i class="fa-solid fa-circle-play"></i>';
+    } else {
+      const img = document.createElement("img");
+      img.src = image;
+      img.alt = label;
+      button.appendChild(img);
+    }
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".pd-thumb").forEach(el => el.classList.remove("active"));
+      button.classList.add("active");
+      action();
+    });
+    thumbs.appendChild(button);
+    return button;
+  }
+
+  showImage();
+  makeThumb("Product image", product.image, showImage).classList.add("active");
+  makeThumb("Product video", product.image, showVideo, true);
+
+  document.getElementById("closeZoom").addEventListener("click", () =>
+    document.getElementById("zoomOverlay").classList.remove("open"));
+  document.getElementById("zoomOverlay").addEventListener("click", e => {
+    if (e.target.id === "zoomOverlay" || e.target.id === "zoomImage")
+      document.getElementById("zoomOverlay").classList.remove("open");
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") document.getElementById("zoomOverlay").classList.remove("open");
+  });
+
+  const alternatives = document.getElementById("alternatives");
+  product.alternatives.filter(name => name !== requestedName).forEach(name => {
+    const alt = products[name];
+    const a = document.createElement("a");
+    a.className = "pd-alt";
+    a.href = "product.html?product=" + encodeURIComponent(name);
+    a.innerHTML = '<img src="' + alt.image + '" alt=""><strong></strong><span></span>';
+    a.querySelector("strong").textContent = name;
+    a.querySelector("span").textContent = money(alt.price);
+    alternatives.appendChild(a);
+  });
+
+  document.getElementById("addButton").addEventListener("click", () => {
+    const qty = Math.max(1, parseInt(document.getElementById("quantity").value, 10) || 1);
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem("cart")) || []; } catch (e) {}
+
+    const existing = cart.find(item => item.name === requestedName);
+    if (existing) {
+      existing.quantity = (Number(existing.quantity) || 1) + qty;
+    } else {
+      cart.push({
+        name: requestedName,
+        price: product.price,
+        quantity: qty,
+        image: product.image,
+        description: product.description,
+        category: product.category
+      });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    document.getElementById("cartMessage").textContent = "Added to your cart.";
+  });
+})();
+</script>
+</body>
+</html>

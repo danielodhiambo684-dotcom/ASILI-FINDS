@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Asili Finds</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #F7F4EC;
+            color: #29332B;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+            padding: 35px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(38, 61, 43, 0.12);
+        }
+
+        .logo {
+            text-align: center;
+            color: #263D2B;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        h2 {
+            margin-bottom: 22px;
+            color: #263D2B;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5d9d4;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #263D2B;
+            box-shadow: 0 0 0 2px rgba(38, 61, 43, 0.1);
+        }
+
+        .password-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .password-row label {
+            margin-bottom: 0;
+        }
+
+        .password-row button {
+            border: none;
+            background: none;
+            color: #263D2B;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            background: #263D2B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .login-button:hover {
+            background: #35553c;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #263D2B;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
+            color: #a12626;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">Asili Finds</div>
+        <p class="subtitle">Find your style. Discover your home.</p>
+
+        <h2>Welcome Back</h2>
+
+        <p id="message" class="message" role="status"></p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <div class="password-row">
+                    <label for="password">Password</label>
+                    <button type="button" id="togglePassword">
+                        Show password
+                    </button>
+                </div>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                Login
+            </button>
+
+        </form>
+
+        <p class="register-link">
+            Don't have an account?
+            <a href="register.html">Create an account</a>
+        </p>
+
+        <a href="index.html" class="back-link">
+            ← Back to shopping
+        </a>
+
+    </div>
+
+    
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    message.style.color = "#a12626";
+
+    let users = [];
+
+    try {
+        users = JSON.parse(localStorage.getItem("asiliFindsUsers") || "[]");
+
+        if (!Array.isArray(users)) {
+            users = [];
+        }
+    } catch (error) {
+        message.textContent = "Unable to access account storage.";
+        return;
+    }
+
+    const user = users.find(account =>
+        account.email === email && account.password === password
+    );
+
+    if (!user) {
+        message.textContent = "Incorrect email or password. Please try again.";
+        return;
+    }
+
+    const currentUser = {
+        fullname: user.fullname,
+        email: user.email,
+        phone: user.phone
+    };
+
+    try {
+        localStorage.setItem(
+            "asiliFindsCurrentUser",
+            JSON.stringify(currentUser)
+        );
+
+        message.style.color = "#263D2B";
+        message.textContent = "Login successful! Welcome back, " + user.fullname + ".";
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1000);
+
+    } catch (error) {
+        message.textContent = "Login could not be completed. Please try again.";
+    }
+});
+
+// Show a registration success message when redirected from registration.
+if (new URLSearchParams(window.location.search).get("registered") === "1") {
+    document.getElementById("message").textContent =
+        "Your account is ready. Please log in.";
+    document.getElementById("message").style.color = "#263D2B";
+}
+</script>
+
+
+</body>
+</html>

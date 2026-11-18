@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASILI FINDS | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">A</div>
+            <div>
+                <h2>ASILI FINDS</h2>
+                <span>Admin Panel</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="nav-heading">MENU</p>
+
+            <button class="nav-link active" data-page="dashboardPage">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="nav-link" data-page="inventoryPage">
+                <span>▤</span> Inventory
+            </button>
+
+            <button class="nav-link" data-page="addProductPage">
+                <span>＋</span> Add Product
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="index.html" class="back-store">↗ View Customer Website</a>
+            <p>ASILI FINDS © 2026</p>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+            <div>
+                <h2 id="pageTitle">Dashboard</h2>
+                <p>Manage your store and inventory.</p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="profile-avatar">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Store Manager</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD PAGE -->
+        <section class="page active" id="dashboardPage">
+
+            <div class="welcome-section">
+                <div>
+                    <h1>Welcome Back, Admin!</h1>
+                    <p>Here's what's happening in your store today.</p>
+                </div>
+
+                <button class="primary-btn" data-open-page="addProductPage">
+                    + Add New Product
+                </button>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">▤</div>
+                    <div>
+                        <p>Total Products</p>
+                        <h2 id="totalProducts">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">KSh</div>
+                    <div>
+                        <p>Inventory Value</p>
+                        <h2 id="inventoryValue">KSh 0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">▦</div>
+                    <div>
+                        <p>Items in Stock</p>
+                        <h2 id="totalStock">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">!</div>
+                    <div>
+                        <p>Low Stock Products</p>
+                        <h2 id="lowStock">0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Recent Products</h2>
+                        <p>Your recently added inventory.</p>
+                    </div>
+
+                    <button class="text-btn" data-open-page="inventoryPage">
+                        View All →
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentProductsTable">
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    No products added yet.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- INVENTORY PAGE -->
+        <section class="page" id="inventoryPage">
+
+            <div class="page-intro">
+                <div>
+                    <h1>Product Inventory</h1>
+                    <p>View, manage, edit and delete your store products.</p>
+                </div>
+
+                <button class="primary-btn" data-open-page="addProductPage">
+                    + Add Product
+                </button>
+            </div>
+
+            <div class="content-card">
+
+                <div class="inventory-tools">
+                    <input
+                        type="search"
+                        id="inventorySearch"
+                        placeholder="Search products..."
+                    >
+
+                    <select id="inventoryCategory">
+                        <option value="">All Categories</option>
+                        <option value="Kitchen">Kitchen</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Refurbished Goods">Refurbished Goods</option>
+                    </select>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="inventoryTable">
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    No products available. Add your first product.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ADD PRODUCT PAGE -->
+        <section class="page" id="addProductPage">
+
+            <div class="page-intro">
+                <div>
+                    <h1 id="formHeading">Add New Product</h1>
+                    <p>Add a product to your ASILI FINDS inventory.</p>
+                </div>
+            </div>
+
+            <div class="content-card form-card">
+
+                <form id="productForm">
+
+                    <input type="hidden" id="productId">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input
+                                type="text"
+                                id="productName"
+                                placeholder="e.g. Modern Kitchen Blender"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productCategory">Product Category *</label>
+                            <select id="productCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Kitchen">Kitchen</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Refurbished Goods">Refurbished Goods</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Product Price (KSh) *</label>
+                            <input
+                                type="number"
+                                id="productPrice"
+                                placeholder="Enter price"
+                                min="0.01"
+                                step="0.01"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productStock">Stock Quantity *</label>
+                            <input
+                                type="number"
+                                id="productStock"
+                                placeholder="Enter available quantity"
+                                min="0"
+                                step="1"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="productDescription">Product Description *</label>
+                            <textarea
+                                id="productDescription"
+                                rows="5"
+                                placeholder="Describe the product, its features and condition..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="productImage">Product Image *</label>
+
+                            <div class="upload-area">
+                                <input
+                                    type="file"
+                                    id="productImage"
+                                    accept="image/*"
+                                >
+
+                                <div class="upload-instructions">
+                                    <span class="upload-icon">⇧</span>
+                                    <strong>Choose a product image</strong>
+                                    <small>Upload JPG, PNG or WEBP images.</small>
+                                </div>
+                            </div>
+
+                            <div class="image-preview" id="imagePreview">
+                                <img id="previewImage" src="" alt="Product preview">
+                            </div>
+
+                            <small class="helper-text">
+                                An image is required when adding a new product.
+                                When editing, you can keep the existing image.
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="cancelForm">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="primary-btn" id="saveProductBtn">
+                            Save Product
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Asili Finds | Discover Your Kind of Find</title>
+    <meta name="description" content="Discover quality electronics, kitchen products, furniture and more at Asili Finds.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- 1. HEADER -->
+<header class="site-header">
+    <a href="index.html" class="brand">
+        <span class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+        <span>
+            <strong>Asili Finds</strong>
+            <small>Discover your kind of find.</small>
+        </span>
+    </a>
+
+    <form class="header-search" id="headerSearchForm">
+        <input type="search" id="searchInput"
+               placeholder="Search for products..." aria-label="Search products">
+        <button type="submit" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    <div class="header-actions">
+      <a href="login.html" class="header-action" id="accountLink">
+    <i class="fa-regular fa-user"></i>
+    <span id="accountLabel">Account</span>
+</a>
+        <a href="cart.html" class="header-action cart-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+    </div>
+</header>
+
+<!-- 2. NAVIGATION BAR -->
+<nav class="main-nav">
+    <a href="index.html#categories" class="all-categories">
+        <i class="fa-solid fa-bars"></i> All Categories
+    </a>
+
+    <a href="electronics.html">Electronics</a>
+    <a href="kitchen.html">Kitchen</a>
+    <a href="home-living.html">Home & Living</a>
+    <a href="beauty.html">Beauty</a>
+    <a href="fashion.html">Fashion</a>
+    <a href="refurbished.html">Refurbished</a>
+    <a href="index.html#shop">All Products</a>
+</nav>
+
+<main>
+
+<!-- 3. HERO SECTION -->
+<section class="hero-section" id="home">
+
+    <div class="hero-content">
+        <span class="eyebrow" id="heroEyebrow">
+            DISCOVER SOMETHING NEW
+        </span>
+
+        <h1 id="heroTitle">
+            Find Your Next<br>
+            <span>Favourite Gadget.</span>
+        </h1>
+
+        <p id="heroDescription">
+            Explore exciting electronics and smart gadgets for everyday life.
+        </p>
+
+        <a href="electronics.html" class="btn btn-dark" id="heroButton">
+            Shop Electronics
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <div class="hero-trust">
+            <i class="fa-solid fa-check-circle"></i>
+            <span id="heroTrust">Great finds for everyday living.</span>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img
+            id="heroProductImage"
+            src="images/headphone1.jpg"
+            alt="Featured electronics"
+        >
+
+        <div class="image-label">
+            <span id="heroImageCategory">FEATURED CATEGORY</span>
+            <p id="heroImageCaption">Discover your next favourite.</p>
+        </div>
+    </div>
+
+    <div class="hero-dots" id="heroDots" aria-label="Choose a product category">
+        <button class="active" type="button" aria-label="Electronics" aria-pressed="true"></button>
+        <button type="button" aria-label="Fashion" aria-pressed="false"></button>
+        <button type="button" aria-label="Home and Living" aria-pressed="false"></button>
+        <button type="button" aria-label="Beauty" aria-pressed="false"></button>
+        <button type="button" aria-label="Sports" aria-pressed="false"></button>
+        <button type="button" aria-label="Refurbished Items" aria-pressed="false"></button>
+    </div>
+
+</section>
+
+<!-- 4. CATEGORY SECTION -->
+<section class="section categories-section" id="categories">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">SHOP BY INTEREST</span>
+            <h2>Explore Our Categories</h2>
+        </div>
+    </div>
+
+    <div class="category-grid">
+
+        <a href="electronics.html" class="category-card">
+            <span class="category-icon electronics-icon">
+                <i class="fa-solid fa-laptop"></i>
+            </span>
+            <strong>Electronics</strong>
+        </a>
+
+        <a href="kitchen.html" class="category-card">
+            <span class="category-icon kitchen-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </span>
+            <strong>Kitchen</strong>
+        </a>
+
+        <a href="home-living.html" class="category-card">
+            <span class="category-icon home-icon">
+                <i class="fa-solid fa-couch"></i>
+            </span>
+            <strong>Home & Living</strong>
+        </a>
+
+        <a href="beauty.html" class="category-card">
+            <span class="category-icon beauty-icon">
+                <i class="fa-solid fa-spray-can-sparkles"></i>
+            </span>
+            <strong>Beauty</strong>
+        </a>
+
+        <a href="fashion.html" class="category-card">
+            <span class="category-icon fashion-icon">
+                <i class="fa-solid fa-shirt"></i>
+            </span>
+            <strong>Fashion</strong>
+        </a>
+
+        <a href="refurbished.html" class="category-card">
+            <span class="category-icon refurbished-icon">
+                <i class="fa-solid fa-rotate"></i>
+            </span>
+            <strong>Refurbished</strong>
+        </a>
+
+    </div>
+</section>
+
+<!-- 5. FEATURED PRODUCTS -->
+<section class="section products-section" id="shop">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">HANDPICKED FOR YOU</span>
+            <h2>Featured Finds</h2>
+            <p>Discover products worth adding to your collection.</p>
+        </div>
+
+        <a href="electronics.html" class="text-link">
+            Explore products <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="product-grid" id="productList">
+
+        <article class="product-card" data-category="electronics">
+            <div class="product-image-wrap">
+                <span class="product-badge">Popular</span>
+                <img src="images/headphone1.jpg"
+                     alt="Wireless headphones">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3>Wireless Headphones</h3>
+                <div class="product-rating">★★★★★ <span>(24)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,999</strong>
+                    <button class="add-cart" onclick="addToCart('Wireless Headphones', 2999)"
+                            aria-label="Add Wireless Headphones to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="electronics">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+                     alt="Modern wristwatch">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3>Modern Smartwatch</h3>
+                <div class="product-rating">★★★★★ <span>(18)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 4,499</strong>
+                    <button class="add-cart" onclick="addToCart('Modern Smartwatch', 4499)"
+                            aria-label="Add Modern Smartwatch to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="electronics">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80"
+                     alt="Wireless earbuds">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3>Wireless Earbuds</h3>
+                <div class="product-rating">★★★★★ <span>(32)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 1,899</strong>
+                    <button class="add-cart" onclick="addToCart('Wireless Earbuds', 1899)"
+                            aria-label="Add Wireless Earbuds to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="kitchen">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"
+                     alt="Modern kitchen">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Kitchen</span>
+                <h3>Kitchen Essentials Set</h3>
+                <div class="product-rating">★★★★★ <span>(16)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 950</strong>
+                    <button class="add-cart" onclick="addToCart('Kitchen Essentials Set', 950)"
+                            aria-label="Add Kitchen Essentials Set to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="furniture">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1598300053653-4b6f7e6c0b6e?auto=format&fit=crop&w=600&q=80"
+                     alt="Comfortable chair">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Furniture</span>
+                <h3>Modern Home Chair</h3>
+                <div class="product-rating">★★★★★ <span>(12)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 4,500</strong>
+                    <button class="add-cart" onclick="addToCart('Modern Home Chair', 4500)"
+                            aria-label="Add Modern Home Chair to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge refurbished-badge">Great Value</span>
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80"
+                     alt="Laptop computer">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Refurbished Goods</span>
+                <h3>Refurbished Laptop</h3>
+                <div class="product-rating">★★★★★ <span>(9)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 18,000</strong>
+                    <button class="add-cart" onclick="addToCart('Refurbished Laptop', 18000)"
+                            aria-label="Add Refurbished Laptop to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <p id="searchMessage" class="search-message" aria-live="polite"></p>
+</section>
+
+<!-- 6. PROMOTIONAL BANNERS -->
+<section class="section promotion-grid">
+
+    <div class="promotion-card promotion-orange">
+        <div class="promotion-content">
+            <span class="eyebrow">LIMITED-TIME FINDS</span>
+            <h2>Refresh Your Style</h2>
+            <p>Explore fashion and everyday essentials.</p>
+            <a href="fashion.html" class="btn btn-dark">Explore Fashion</a>
+        </div>
+        <i class="fa-solid fa-shirt promotion-art" aria-hidden="true"></i>
+    </div>
+
+    <div class="promotion-card promotion-blue">
+        <div class="promotion-content">
+            <span class="eyebrow">SOMETHING SPECIAL</span>
+            <h2>Everyday Essentials</h2>
+            <p>Find practical products for your lifestyle.</p>
+            <a href="beauty.html" class="btn btn-dark">Explore Beauty</a>
+        </div>
+        <i class="fa-solid fa-gift promotion-art" aria-hidden="true"></i>
+    </div>
+
+</section>
+
+<!-- 7. BEST SELLERS -->
+<section class="section products-section" id="best-sellers">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">CUSTOMER FAVOURITES</span>
+            <h2>Best-Selling Products</h2>
+            <p>Explore more everyday favourites.</p>
+        </div>
+        <a href="index.html#shop" class="text-link">
+            Shop all <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="product-grid best-seller-grid">
+
+        <article class="product-card" data-category="electronics">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+                     alt="Over-ear headphones">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3>Premium Headphones</h3>
+                <div class="product-rating">★★★★★ <span>(30)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,999</strong>
+                    <button class="add-cart" onclick="addToCart('Premium Headphones', 2999)"
+                            aria-label="Add Premium Headphones to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
+                     alt="Classic black T-shirt">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Classic T-Shirt</h3>
+                <div class="product-rating">★★★★★ <span>(21)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 799</strong>
+                    <button class="add-cart" onclick="addToCart('Classic T-Shirt', 799)"
+                            aria-label="Add Classic T-Shirt to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="kitchen">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"
+                     alt="Coffee and coffee-making equipment">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Kitchen</span>
+                <h3>Coffee Essentials</h3>
+                <div class="product-rating">★★★★★ <span>(15)</span></div>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 3,499</strong>
+                    <button class="add-cart" onclick="addToCart('Coffee Essentials', 3499)"
+                            aria-label="Add Coffee Essentials to cart">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- 8. STORE BENEFITS -->
+<section class="benefits-section">
+
+    <div class="benefit">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div>
+            <strong>Convenient Delivery</strong>
+            <p>Delivery options available.</p>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+            <strong>Secure Shopping</strong>
+            <p>Shop with confidence.</p>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <i class="fa-solid fa-box-open"></i>
+        <div>
+            <strong>Carefully Selected</strong>
+            <p>Find products for everyday life.</p>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <i class="fa-solid fa-headset"></i>
+        <div>
+            <strong>Customer Support</strong>
+            <p>We're here to help.</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- 9. NEWSLETTER -->
+<section class="section newsletter-section">
+
+    <div class="newsletter-icon">
+        <i class="fa-regular fa-envelope"></i>
+    </div>
+
+    <div class="newsletter-content">
+        <h2>Get the Latest Finds</h2>
+        <p>Stay updated with new arrivals, shopping ideas and special offers.</p>
+    </div>
+
+    <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail"
+               placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+    </form>
+
+    <p id="newsletterMessage" class="newsletter-message" aria-live="polite"></p>
+
+</section>
+
+</main>
+
+<!-- 10. FOOTER -->
+<footer class="site-footer" id="contact">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <a href="index.html" class="brand footer-logo">
+                <span class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+                <span>
+                    <strong>Asili Finds</strong>
+                    <small>Discover your kind of find.</small>
+                </span>
+            </a>
+
+            <p>Your destination for unique finds and everyday essentials.</p>
+
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <a href="index.html#shop">All Products</a>
+            <a href="electronics.html">Electronics</a>
+            <a href="kitchen.html">Kitchen</a>
+            <a href="home-living.html">Home & Living</a>
+            <a href="beauty.html">Beauty</a>
+            <a href="fashion.html">Fashion</a>
+            <a href="refurbished.html">Refurbished Goods</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+            <a href="#contact">Contact Us</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="login.html">My Account</a>
+            <a href="#contact">Help & Support</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>Contact Us</h3>
+            <p><i class="fa-regular fa-envelope"></i> Add your business email</p>
+            <p><i class="fa-solid fa-phone"></i> Add your business phone</p>
+            <p><i class="fa-solid fa-truck-fast"></i> Delivery options available</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Asili Finds. All rights reserved.</p>
+        <p>Made for better everyday shopping.</p>
+    </div>
+
+</footer>
+
+<!-- MAIN JAVASCRIPT -->
+<script src="script.js"></script>
+
+<!-- PRODUCT DETAILS NAVIGATION -->
+<script>
+document.querySelectorAll(".product-card").forEach(card => {
+
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", function(event) {
+
+        if (event.target.closest(".add-cart")) return;
+
+        const name = card.querySelector("h3")?.textContent.trim();
+
+        if (name) {
+            window.location.href =
+                "product.html?product=" + encodeURIComponent(name);
+        }
+
+    });
+
+});
+</script>
+
+<!-- ACCESSIBILITY ASSISTANT -->
+<button
+    id="accessibilityButton"
+    class="accessibility-button"
+    type="button"
+    aria-label="Open accessibility and shopping help"
+    aria-expanded="false"
+    aria-controls="accessibilityPanel">
+
+    <span aria-hidden="true">♿</span>
+    <span>Accessibility & Help</span>
+
+</button>
+
+<section
+    id="accessibilityPanel"
+    class="accessibility-panel"
+    aria-labelledby="accessibilityTitle"
+    hidden>
+
+    <div class="accessibility-heading">
+        <h2 id="accessibilityTitle">How can we help?</h2>
+
+        <button id="closeAccessibility"
+                type="button"
+                aria-label="Close accessibility help">
+            Close
+        </button>
+    </div>
+
+    <p>Choose how you would like to use Asili Finds.</p>
+
+    <button id="startVoiceShopping" type="button">
+        🎙️ Start voice shopping
+    </button>
+
+    <button id="shoppingGuideButton" type="button">
+        🛍️ Teach me how to shop
+    </button>
+
+    <button id="increaseText" type="button">
+        A+ Make text larger
+    </button>
+
+    <button id="resetText" type="button">
+        Reset text size
+    </button>
+
+    <div id="accessibilityMessage"
+         role="status"
+         aria-live="polite">
+        Select an option to get started.
+    </div>
+
+    <div id="shoppingGuide" hidden>
+        <h3>How to shop</h3>
+        <ol>
+            <li>Use the search box to find a product.</li>
+            <li>Select a product to view its details.</li>
+            <li>Choose Add to Cart.</li>
+            <li>Open your cart to review your items.</li>
+            <li>Follow the checkout instructions to continue.</li>
+        </ol>
+    </div>
+
+</section>
+
+<!-- FLOATING FEEDBACK -->
+<div class="feedback-widget">
+
+    <button type="button"
+            id="feedbackIcon"
+            class="feedback-icon"
+            aria-label="Give feedback"
+            title="Give feedback">
+        😊
+    </button>
+
+    <div id="feedbackPopup" class="feedback-popup" hidden>
+
+        <h3>How are you feeling?</h3>
+        <p>Tell us about your shopping experience.</p>
+
+        <div class="feedback-emotions">
+
+            <button type="button" class="emotion-btn"
+                    data-emotion="happy" aria-label="Happy">
+                😊
+                <span>Happy</span>
+            </button>
+
+            <button type="button" class="emotion-btn"
+                    data-emotion="hungry" aria-label="Angry">
+                😠
+                <span>Angry</span>
+            </button>
+
+            <button type="button" class="emotion-btn"
+                    data-emotion="frustrated" aria-label="Frustrated">
+                😣
+                <span>Frustrated</span>
+            </button>
+
+        </div>
+
+        <form id="feedbackForm">
+
+            <label for="fbMessage">Your feedback</label>
+
+            <textarea id="fbMessage"
+                      rows="3"
+                      placeholder="Choose a face to begin..."
+                      required></textarea>
+
+            <button type="submit" class="feedback-submit">
+                Submit Feedback
+            </button>
+
+            <p id="feedbackMessage"
+               role="status"
+               aria-live="polite"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

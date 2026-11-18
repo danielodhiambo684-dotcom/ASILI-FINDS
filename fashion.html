@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion | Asili Finds</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        .category-hero {
+            min-height: 300px;
+            padding: 65px 8%;
+            background: linear-gradient(110deg, #263b32, #647b65);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .category-hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            margin: 12px 0;
+        }
+
+        .category-hero p {
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .category-hero .eyebrow {
+            color: #e7c77b;
+        }
+
+        .category-hero video {
+            width: 42%;
+            max-height: 230px;
+            object-fit: cover;
+            border-radius: 16px;
+            background: #243943;
+        }
+
+        .category-products {
+            padding-top: 55px;
+        }
+
+        .category-intro {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        @media(max-width: 700px) {
+            .category-hero {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 45px 6%;
+            }
+
+            .category-hero video {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <a href="index.html" class="brand">
+        <span class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+        <span>
+            <strong>Asili Finds</strong>
+            <small>Discover your kind of find.</small>
+        </span>
+    </a>
+
+    <form class="header-search" id="headerSearchForm">
+        <input type="search" id="searchInput" placeholder="Search for products..." aria-label="Search products">
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <div class="header-actions">
+        <a href="login.html" class="header-action">
+            <i class="fa-regular fa-user"></i><span>Account</span>
+        </a>
+
+        <a href="cart.html" class="header-action cart-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <a href="index.html#categories" class="all-categories">
+        <i class="fa-solid fa-bars"></i> All Categories
+    </a>
+    <a href="electronics.html">Electronics</a>
+    <a href="kitchen.html">Kitchen</a>
+    <a href="home-living.html">Home & Living</a>
+    <a href="beauty.html">Beauty</a>
+    <a href="fashion.html" class="active">Fashion</a>
+    <a href="refurbished.html">Refurbished</a>
+    <a href="index.html#shop">All Products</a>
+</nav>
+
+<main>
+
+<!-- CATEGORY HERO / VIDEO AREA -->
+<section class="category-hero">
+    <div>
+        <span class="eyebrow">EXPLORE FASHION</span>
+        <h1>Style That Speaks<br>For You.</h1>
+        <p>
+            Discover clothing, shoes, bags and accessories that bring
+            comfort and confidence to your everyday style. Find pieces
+            that match your personality and make every outfit count.
+        </p>
+        <a href="#popular" class="btn btn-dark">
+            Shop Fashion <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <!-- Replace fashion-video.mp4 with your fashion marketing video filename -->
+    <video controls muted playsinline poster="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85">
+        <source src="videos/fashion-video.mp4" type="video/mp4">
+        Your browser does not support video.
+    </video>
+</section>
+
+<!-- POPULAR PRODUCTS -->
+<section class="section products-section category-products" id="popular">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">CUSTOMER FAVOURITES</span>
+            <h2>Popular Fashion</h2>
+            <p>Everyday styles and accessories customers love.</p>
+        </div>
+    </div>
+
+    <div class="product-grid" id="productList">
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">Popular</span>
+                <img src="images/Women's Casual Outfit.jpg" alt="Women's casual outfit">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Women's Casual Outfit</h3>
+                <p>A comfortable and stylish outfit for everyday wear.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,500</strong>
+                    <button class="add-cart" onclick="addToCart('Women’s Casual Outfit',2500)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">Popular</span>
+                <img src="images/Casual Sneakers.jpg" alt="Red casual sneakers">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Casual Sneakers</h3>
+                <p>Versatile sneakers for casual outings and daily comfort.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 3,200</strong>
+                    <button class="add-cart" onclick="addToCart('Casual Sneakers',3200)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <img src="images/Classic Handbag.jpg" alt="Fashion handbag">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Classic Handbag</h3>
+                <p>A practical handbag that complements different outfits.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,800</strong>
+                    <button class="add-cart" onclick="addToCart('Classic Handbag',2800)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <img src="images/Elegant Women's Dress.jpg" alt="Women's fashion dress">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Elegant Women's Dress</h3>
+                <p>A lovely dress for events, outings and special occasions.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 3,500</strong>
+                    <button class="add-cart" onclick="addToCart('Elegant Women’s Dress',3500)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <img src="images/Classic T-Shirt.jpg" alt="Plain casual T-shirt">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Classic T-Shirt</h3>
+                <p>A simple wardrobe essential that is easy to style.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 900</strong>
+                    <button class="add-cart" onclick="addToCart('Classic T-Shirt',900)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="section products-section category-products" id="new-arrivals">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">JUST ARRIVED</span>
+            <h2>New Fashion Arrivals</h2>
+            <p>Explore fresh styles and accessories for your collection.</p>
+        </div>
+    </div>
+
+    <div class="product-grid">
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+                <img src="images/Men's Casual Jacket.jpg" alt="Men's casual jacket">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Men's Casual Jacket</h3>
+                <p>A smart outer layer for a clean casual look.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 3,800</strong>
+                    <button class="add-cart" onclick="addToCart('Men’s Casual Jacket',3800)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+                <img src="images/Stylish Sunglasses.jpg" alt="Stylish sunglasses">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Stylish Sunglasses</h3>
+                <p>Complete your look with fashionable everyday shades.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 1,200</strong>
+                    <button class="add-cart" onclick="addToCart('Stylish Sunglasses',1200)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+                <img src="images/Women's Shoulder Bag.jpg" alt="Women's shoulder bag">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Women's Shoulder Bag</h3>
+                <p>A stylish everyday bag with room for essentials.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,400</strong>
+                    <button class="add-cart" onclick="addToCart('Women’s Shoulder Bag',2400)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+                <img src="images/Classic Denim Jeans.jpg" alt="Blue denim jeans">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Classic Denim Jeans</h3>
+                <p>Easy-to-match denim for casual everyday outfits.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,200</strong>
+                    <button class="add-cart" onclick="addToCart('Classic Denim Jeans',2200)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+        <article class="product-card" data-category="fashion">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+                <img src="images/Everyday Fashion Shoes.jpg" alt="Casual fashion shoes">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3>Everyday Fashion Shoes</h3>
+                <p>Comfortable footwear for work, travel and outings.</p>
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 2,900</strong>
+                    <button class="add-cart" onclick="addToCart('Everyday Fashion Shoes',2900)"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- STORE BENEFITS -->
+<section class="benefits-section">
+    <div class="benefit"><i class="fa-solid fa-truck-fast"></i><div><strong>Convenient Delivery</strong><p>Delivery options available.</p></div></div>
+    <div class="benefit"><i class="fa-solid fa-shield-halved"></i><div><strong>Secure Shopping</strong><p>Shop with confidence.</p></div></div>
+    <div class="benefit"><i class="fa-solid fa-shirt"></i><div><strong>Style & Comfort</strong><p>Find looks for every day.</p></div></div>
+    <div class="benefit"><i class="fa-solid fa-headset"></i><div><strong>Customer Support</strong><p>We're here to help.</p></div></div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section newsletter-section">
+    <div class="newsletter-icon"><i class="fa-regular fa-envelope"></i></div>
+    <div class="newsletter-content">
+        <h2>Get the Latest Finds</h2>
+        <p>Stay updated with new arrivals, style ideas and special offers.</p>
+    </div>
+    <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+    </form>
+    <p id="newsletterMessage" class="newsletter-message" aria-live="polite"></p>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" id="contact">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="index.html" class="brand footer-logo">
+                <span class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+                <span><strong>Asili Finds</strong><small>Discover your kind of find.</small></span>
+            </a>
+            <p>Your destination for unique finds and everyday essentials.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <a href="index.html#shop">All Products</a>
+            <a href="electronics.html">Electronics</a>
+            <a href="kitchen.html">Kitchen</a>
+            <a href="home-living.html">Home & Living</a>
+            <a href="beauty.html">Beauty</a>
+            <a href="fashion.html">Fashion</a>
+            <a href="refurbished.html">Refurbished Goods</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+            <a href="#contact">Contact Us</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="login.html">My Account</a>
+            <a href="#contact">Help & Support</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>Contact Us</h3>
+            <p><i class="fa-regular fa-envelope"></i> Add your business email</p>
+            <p><i class="fa-solid fa-phone"></i> Add your business phone</p>
+            <p><i class="fa-solid fa-truck-fast"></i> Delivery options available</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Asili Finds. All rights reserved.</p>
+        <p>Made for better everyday shopping.</p>
+    </div>
+</footer>
+
+<!-- ACCESSIBILITY -->
+<button id="accessibilityButton" class="accessibility-button" type="button" aria-label="Open accessibility and shopping help" aria-expanded="false" aria-controls="accessibilityPanel">
+    <span aria-hidden="true">♿</span><span>Accessibility & Help</span>
+</button>
+
+<section id="accessibilityPanel" class="accessibility-panel" aria-labelledby="accessibilityTitle" hidden>
+    <div class="accessibility-heading">
+        <h2 id="accessibilityTitle">How can we help?</h2>
+        <button id="closeAccessibility" type="button" aria-label="Close accessibility help">Close</button>
+    </div>
+    <p>Choose how you would like to use Asili Finds.</p>
+    <button id="startVoiceShopping" type="button">🎙️ Start voice shopping</button>
+    <button id="shoppingGuideButton" type="button">🛍️ Teach me how to shop</button>
+    <button id="increaseText" type="button">A+ Make text larger</button>
+    <button id="resetText" type="button">Reset text size</button>
+    <div id="accessibilityMessage" role="status" aria-live="polite">Select an option to get started.</div>
+    <div id="shoppingGuide" hidden>
+        <h3>How to shop</h3>
+        <ol>
+            <li>Use the search box to find a fashion item.</li>
+            <li>Select a product to view its details.</li>
+            <li>Choose Add to Cart.</li>
+            <li>Open your cart to review your items.</li>
+            <li>Follow the checkout instructions to continue.</li>
+        </ol>
+    </div>
+</section>
+
+<!-- FEEDBACK -->
+<div class="feedback-widget">
+    <button type="button" id="feedbackIcon" class="feedback-icon" aria-label="Give feedback" title="Give feedback">😊</button>
+    <div id="feedbackPopup" class="feedback-popup" hidden>
+        <h3>How are you feeling?</h3>
+        <p>Tell us about your shopping experience.</p>
+        <div class="feedback-emotions">
+            <button type="button" class="emotion-btn" data-emotion="happy" aria-label="Happy">😊<span>Happy</span></button>
+            <button type="button" class="emotion-btn" data-emotion="angry" aria-label="Angry">😠<span>Angry</span></button>
+            <button type="button" class="emotion-btn" data-emotion="frustrated" aria-label="Frustrated">😣<span>Frustrated</span></button>
+        </div>
+        <form id="feedbackForm">
+            <label for="fbMessage">Your feedback</label>
+            <textarea id="fbMessage" rows="3" placeholder="Choose a face to begin..." required></textarea>
+            <button type="submit" class="feedback-submit">Submit Feedback</button>
+            <p id="feedbackMessage" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+document.querySelectorAll(".product-card").forEach(card => {
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", function(event) {
+        if (event.target.closest(".add-cart")) return;
+
+        const name = card.querySelector("h3")?.textContent.trim();
+
+        if (name) {
+            window.location.href =
+                "product.html?product=" + encodeURIComponent(name);
+        }
+    });
+});
+</script>
+
+</body>
+</html>

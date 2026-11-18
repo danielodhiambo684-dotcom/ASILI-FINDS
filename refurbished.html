@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refurbished | Asili Finds</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        .category-hero {
+            min-height: 300px;
+            padding: 65px 8%;
+            background: linear-gradient(110deg, #183c35, #46776a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .category-hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            margin: 12px 0;
+        }
+
+        .category-hero p {
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .category-hero .eyebrow {
+            color: #e7c77b;
+        }
+
+        .category-hero video {
+            width: 42%;
+            max-height: 230px;
+            object-fit: cover;
+            border-radius: 16px;
+            background: #243943;
+        }
+
+        .category-products {
+            padding-top: 55px;
+        }
+
+        .category-intro {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .refurbished-note {
+            padding: 15px 20px;
+            margin: 20px 0;
+            background: #eef5ef;
+            border-left: 4px solid #46776a;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+
+        @media(max-width: 700px) {
+            .category-hero {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 45px 6%;
+            }
+
+            .category-hero video {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <a href="index.html" class="brand">
+        <span class="brand-icon"><i class="fa-solid fa-bag-shopping"></i></span>
+        <span>
+            <strong>Asili Finds</strong>
+            <small>Discover your kind of find.</small>
+        </span>
+    </a>
+
+    <form class="header-search" id="headerSearchForm">
+        <input type="search" id="searchInput"
+               placeholder="Search for products..."
+               aria-label="Search products">
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    <div class="header-actions">
+        <a href="login.html" class="header-action">
+            <i class="fa-regular fa-user"></i>
+            <span>Account</span>
+        </a>
+
+        <a href="cart.html" class="header-action cart-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <a href="index.html#categories" class="all-categories">
+        <i class="fa-solid fa-bars"></i> All Categories
+    </a>
+
+    <a href="electronics.html">Electronics</a>
+    <a href="kitchen.html">Kitchen</a>
+    <a href="home-living.html">Home & Living</a>
+    <a href="beauty.html">Beauty</a>
+    <a href="fashion.html">Fashion</a>
+    <a href="refurbished.html" class="active">Refurbished</a>
+    <a href="index.html#shop">All Products</a>
+</nav>
+
+<main>
+
+<!-- HERO SECTION -->
+<section class="category-hero">
+    <div>
+        <span class="eyebrow">SMARTER SHOPPING</span>
+
+        <h1>Quality Technology.<br>Better Prices.</h1>
+
+        <p>
+            Discover quality refurbished laptops, smartphones,
+            tablets and electronics at affordable prices.
+            Get more value from technology without spending too much.
+        </p>
+
+        <a href="#popular" class="btn btn-dark">
+            Explore Refurbished
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <!-- Replace with your own refurbished products video -->
+    <video controls muted playsinline
+        poster="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85">
+
+        <source src="videos/refurbished-video.mp4" type="video/mp4">
+
+        Your browser does not support video.
+    </video>
+</section>
+
+<!-- POPULAR PRODUCTS -->
+<section class="section products-section category-products" id="popular">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">GREAT VALUE PICKS</span>
+            <h2>Popular Refurbished Products</h2>
+            <p>Affordable technology for work, school and everyday life.</p>
+        </div>
+    </div>
+
+    <div class="refurbished-note">
+        <strong><i class="fa-solid fa-circle-check"></i> Shop Smart</strong>
+        <p>
+            Explore pre-owned and refurbished devices.
+            Check each product's condition, specifications and warranty
+            information before purchasing.
+        </p>
+    </div>
+
+    <div class="product-grid" id="productList">
+
+        <!-- PRODUCT 1 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">Popular</span>
+
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80"
+                     alt="Refurbished laptop">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Refurbished Laptop</h3>
+
+                <p>Affordable laptop for learning, office work and browsing.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 25,000</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Refurbished Laptop',25000)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 2 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">Popular</span>
+
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+                     alt="Refurbished smartphone">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Refurbished Smartphone</h3>
+
+                <p>A budget-friendly smartphone for everyday communication.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 8,500</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Refurbished Smartphone',8500)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 3 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80"
+                     alt="Refurbished tablet">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Refurbished Tablet</h3>
+
+                <p>Useful for reading, browsing and entertainment.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 12,000</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Refurbished Tablet',12000)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 4 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"
+                     alt="Refurbished computer monitor">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Computer Monitor</h3>
+
+                <p>A practical display for home and office work.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 9,500</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Computer Monitor',9500)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 5 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80"
+                     alt="Refurbished laptop computer">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Business Laptop</h3>
+
+                <p>A practical laptop option for office and student tasks.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 32,000</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Business Laptop',32000)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="section products-section category-products" id="new-arrivals">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">JUST ADDED</span>
+            <h2>New Refurbished Arrivals</h2>
+            <p>Discover more affordable technology options.</p>
+        </div>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- PRODUCT 6 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80"
+                     alt="Apple style laptop">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Premium Laptop</h3>
+
+                <p>Stylish portable computer for productivity and study.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 38,000</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Premium Laptop',38000)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 7 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+
+                <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80"
+                     alt="Refurbished mobile phone">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Premium Smartphone</h3>
+
+                <p>Modern mobile phone option at a reduced price.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 15,000</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Premium Smartphone',15000)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 8 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+                     alt="Smartwatch">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Smartwatch</h3>
+
+                <p>A convenient wearable device for daily activities.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 3,500</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Smartwatch',3500)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 9 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+
+                <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80"
+                     alt="Wireless earbuds">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Wireless Earbuds</h3>
+
+                <p>Compact audio accessories for music and calls.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 1,500</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Wireless Earbuds',1500)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- PRODUCT 10 -->
+        <article class="product-card" data-category="refurbished">
+            <div class="product-image-wrap">
+                <span class="product-badge">New</span>
+
+                <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
+                     alt="Computer keyboard">
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">Refurbished</span>
+
+                <h3>Computer Keyboard</h3>
+
+                <p>A useful keyboard for everyday computer tasks.</p>
+
+                <div class="product-bottom">
+                    <strong class="product-price">KSh 1,000</strong>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Computer Keyboard',1000)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- STORE BENEFITS -->
+<section class="benefits-section">
+
+    <div class="benefit">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div>
+            <strong>Convenient Delivery</strong>
+            <p>Delivery options available.</p>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+            <strong>Secure Shopping</strong>
+            <p>Shop with confidence.</p>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <i class="fa-solid fa-laptop"></i>
+        <div>
+            <strong>Affordable Technology</strong>
+            <p>Get more value for your money.</p>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <i class="fa-solid fa-headset"></i>
+        <div>
+            <strong>Customer Support</strong>
+            <p>We're here to help.</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section newsletter-section">
+
+    <div class="newsletter-icon">
+        <i class="fa-regular fa-envelope"></i>
+    </div>
+
+    <div class="newsletter-content">
+        <h2>Get the Latest Finds</h2>
+        <p>Stay updated with new arrivals and special offers.</p>
+    </div>
+
+    <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail"
+               placeholder="Enter your email address" required>
+
+        <button type="submit">Subscribe</button>
+    </form>
+
+    <p id="newsletterMessage"
+       class="newsletter-message"
+       aria-live="polite"></p>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" id="contact">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="brand footer-logo">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </span>
+
+                <span>
+                    <strong>Asili Finds</strong>
+                    <small>Discover your kind of find.</small>
+                </span>
+            </a>
+
+            <p>Your destination for unique finds and everyday essentials.</p>
+
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+                <a href="#" aria-label="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Shop</h3>
+
+            <a href="index.html#shop">All Products</a>
+            <a href="electronics.html">Electronics</a>
+            <a href="kitchen.html">Kitchen</a>
+            <a href="home-living.html">Home & Living</a>
+            <a href="beauty.html">Beauty</a>
+            <a href="fashion.html">Fashion</a>
+            <a href="refurbished.html">Refurbished Goods</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+
+            <a href="#contact">Contact Us</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="login.html">My Account</a>
+            <a href="#contact">Help & Support</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>Contact Us</h3>
+
+            <p><i class="fa-regular fa-envelope"></i> Add your business email</p>
+            <p><i class="fa-solid fa-phone"></i> Add your business phone</p>
+            <p><i class="fa-solid fa-truck-fast"></i> Delivery options available</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Asili Finds. All rights reserved.</p>
+        <p>Made for better everyday shopping.</p>
+    </div>
+
+</footer>
+
+<!-- ACCESSIBILITY -->
+<button id="accessibilityButton"
+        class="accessibility-button"
+        type="button"
+        aria-label="Open accessibility and shopping help"
+        aria-expanded="false"
+        aria-controls="accessibilityPanel">
+
+    <span aria-hidden="true">♿</span>
+    <span>Accessibility & Help</span>
+
+</button>
+
+<section id="accessibilityPanel"
+         class="accessibility-panel"
+         aria-labelledby="accessibilityTitle"
+         hidden>
+
+    <div class="accessibility-heading">
+        <h2 id="accessibilityTitle">How can we help?</h2>
+
+        <button id="closeAccessibility"
+                type="button"
+                aria-label="Close accessibility help">
+            Close
+        </button>
+    </div>
+
+    <p>Choose how you would like to use Asili Finds.</p>
+
+    <button id="startVoiceShopping" type="button">
+        🎙️ Start voice shopping
+    </button>
+
+    <button id="shoppingGuideButton" type="button">
+        🛍️ Teach me how to shop
+    </button>
+
+    <button id="increaseText" type="button">
+        A+ Make text larger
+    </button>
+
+    <button id="resetText" type="button">
+        Reset text size
+    </button>
+
+    <div id="accessibilityMessage"
+         role="status"
+         aria-live="polite">
+        Select an option to get started.
+    </div>
+
+    <div id="shoppingGuide" hidden>
+        <h3>How to shop</h3>
+
+        <ol>
+            <li>Use the search box to find a product.</li>
+            <li>Select a product to view its details.</li>
+            <li>Choose Add to Cart.</li>
+            <li>Open your cart to review your items.</li>
+            <li>Follow the checkout instructions to continue.</li>
+        </ol>
+    </div>
+
+</section>
+
+<!-- FEEDBACK -->
+<div class="feedback-widget">
+
+    <button type="button"
+            id="feedbackIcon"
+            class="feedback-icon"
+            aria-label="Give feedback"
+            title="Give feedback">
+        😊
+    </button>
+
+    <div id="feedbackPopup" class="feedback-popup" hidden>
+
+        <h3>How are you feeling?</h3>
+
+        <p>Tell us about your shopping experience.</p>
+
+        <div class="feedback-emotions">
+
+            <button type="button"
+                    class="emotion-btn"
+                    data-emotion="happy"
+                    aria-label="Happy">
+                😊<span>Happy</span>
+            </button>
+
+            <button type="button"
+                    class="emotion-btn"
+                    data-emotion="angry"
+                    aria-label="Angry">
+                😠<span>Angry</span>
+            </button>
+
+            <button type="button"
+                    class="emotion-btn"
+                    data-emotion="frustrated"
+                    aria-label="Frustrated">
+                😣<span>Frustrated</span>
+            </button>
+
+        </div>
+
+        <form id="feedbackForm">
+
+            <label for="fbMessage">Your feedback</label>
+
+            <textarea id="fbMessage"
+                      rows="3"
+                      placeholder="Choose a face to begin..."
+                      required></textarea>
+
+            <button type="submit" class="feedback-submit">
+                Submit Feedback
+            </button>
+
+            <p id="feedbackMessage"
+               role="status"
+               aria-live="polite"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- MAIN JAVASCRIPT -->
+<script src="script.js"></script>
+
+<!-- PRODUCT DETAILS REDIRECTION -->
+<script>
+document.querySelectorAll(".product-card").forEach(card => {
+
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", function(event) {
+
+        if (event.target.closest(".add-cart")) return;
+
+        const name = card.querySelector("h3")?.textContent.trim();
+
+        if (name) {
+            window.location.href =
+                "product.html?product=" + encodeURIComponent(name);
+        }
+
+    });
+
+});
+</script>
+
+</body>
+</html>
